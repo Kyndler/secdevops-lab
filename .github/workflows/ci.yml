@@ -64,10 +64,15 @@ jobs:
           name: juice-shop-image
           path: /tmp
 
+      - name: List downloaded files
+        run: |
+          echo "Contents of /tmp after download:"
+          ls -R /tmp
+
       - name: Run Trivy image scan
         uses: aquasecurity/trivy-action@0.24.0
         with:
-          input: /tmp/juice-shop-image/juice-shop-image.tar
+          input: /tmp/juice-shop-image/juice-shop-image.tar   # TEMP, will adjust after we see ls
           vuln-type: 'os,library'
           format: 'table'
           exit-code: '0'
